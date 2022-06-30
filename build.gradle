@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.beryx.jlink' version '2.24.1'
+}
+
+group 'com.github.matts'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'com.github.matts'
+    mainClass = 'com.github.matts.AppChangeCsvDelimiter'
+}
+
+javafx {
+    version = '11.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    implementation('org.controlsfx:controlsfx:11.1.1')
+    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
+        exclude(group: 'org.openjfx')
+    }
+
+    implementation('net.synedra:validatorfx:0.3.1') {
+        exclude(group: 'org.openjfx')
+    }
+    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+
+    implementation('com.opencsv:opencsv:5.6')
+    implementation('com.google.guava:guava:31.1-jre')
+    implementation('commons-io:commons-io:2.11.0')
+    implementation('org.slf4j:slf4j-api:1.7.36')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    runtimeOnly('org.slf4j:slf4j-jdk14:1.7.36')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-change-csv-delimiter.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'app-change-csv-delimiter'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
+}
