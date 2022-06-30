@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="238.0" prefWidth="399.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.matts.LaunchController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="63.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="215.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="71.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <TextField fx:id="txtPathFilename" promptText="Input file path o directory" GridPane.columnIndex="1" />
+        <TextField fx:id="txtOutputDelimiter" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </GridPane.margin></TextField>
+        <Label text="Path" />
+        <Label text="Output delimiter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#openFileChooser" text="Search" GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets left="5.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="btnChange" mnemonicParsing="false" onAction="#changeDelimiter" text="Change" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets left="5.0" />
+            </GridPane.margin>
+        </Button>
+        <CheckBox fx:id="chkQuoteAll" mnemonicParsing="false" selected="true" text="Quote all" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="txtCustomInputDelimiter" disable="true" promptText="," GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </GridPane.margin></TextField>
+      <CheckBox fx:id="chkEnableCustomInputDelimiter" mnemonicParsing="false" onAction="#enableCustomInputDelimiter" text="Set custom input delimiter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <CheckBox fx:id="chkScanCurrentDir" mnemonicParsing="false" text="Scan current directory" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="txtDefaultOutputDir" promptText="Default directory output" text="results" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label text="Output" GridPane.rowIndex="5" />
+    </GridPane>
+</VBox>
